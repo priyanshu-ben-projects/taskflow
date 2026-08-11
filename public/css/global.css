@@ -1,0 +1,58 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montenegrin+Gothic+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Share+Tech&family=Yuyu&display=swap');
+
+
+/* Desktop Default: Modern Lavender Theme */
+:root {
+    --primary-color: #EEF2FF;
+    --secondary-color: #C7D2FE;
+    --background-color: #F5F3FF;
+    --text-color: #1E1B4B;
+    --card-color: #FFFFFF;
+    --border-color: #6366F1;
+}
+
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+}
+
+/* Body */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--primary-color);
+}
+
+
+/* Media Queries */
+
+/* Mobile Theme: Fresh Sea Green Theme */
+@media (max-width: 480px) {
+    :root {
+        --primary-color: #ECFDF5;
+        --secondary-color: #A7F3D0;
+        --background-color: #F0FDF4;
+        --text-color: #064E3B;
+        --card-color: #FFFFFF;
+        --border-color: #10B981;
+    }
+}
+
+
+/* Laptop / Tablet Theme: Soft Pink Theme */
+@media (min-width: 769px) and (max-width: 1200px) {
+    :root {
+        --primary-color: #FFF1F2;
+        --secondary-color: #FECDD3;
+        --background-color: #FFF5F5;
+        --text-color: #881337;
+        --card-color: #FFFFFF;
+        --border-color: #F43F5E;
+    }
+}

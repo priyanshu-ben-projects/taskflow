@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/editform.css">
+    <link rel="stylesheet" href="/css/global.css">
+
+    <title>Edit Task</title>
+</head>
+
+<body>
+
+    <main class="edit-page">
+
+        <section class="edit-card">
+
+            <!-- ==================== HEADER ==================== -->
+            <header class="edit-header">
+
+                <div class="edit-icon">
+                    ✏️
+                </div>
+
+                <div class="edit-heading">
+
+                    <p class="edit-label">
+                        EDIT TASK
+                    </p>
+
+                    <h1>
+                        Update your task
+                    </h1>
+
+                    <p class="edit-subtitle">
+                        Make changes to your task details and save them.
+                    </p>
+
+                </div>
+
+                <span class="task-id">
+                    #<%= task.id %>
+                </span>
+
+            </header>
+
+
+            <!-- ==================== FORM ==================== -->
+            <form action="/todos/edit/<%= task.id %>?_method=PATCH" method="POST" class="edit-task-form">
+
+                <!-- Task Description -->
+                <div class="form-group task-description">
+
+                    <label for="edit_task">
+                        Task Description
+                    </label>
+
+                    <input type="text" value="<%=task.task %>" name="task" id="edit_task" placeholder="Enter task
+                    details..." required>
+
+                </div>
+
+
+                <!-- Date & Time -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit_task_date">
+                            Due Date
+                        </label>
+                        <input type="date" value="<%= task.task_date.toISOString().split('T')[0] %>" name="task_date"
+                            id="edit_task_date">
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="edit_task_time">
+                            Time
+                        </label>
+
+                        <input type="time" value="<%= task.task_time %>" name="task_time" id="edit_task_time">
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================== ACTIONS ==================== -->
+                <div class="form-actions">
+
+                    <a href="/" class="btn-cancel">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="btn-save">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <title>TaskFlow</title>
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+
+        <main class="todo-app">
+            <!-- ==================== HEADER ==================== -->
+            <header class="app-header">
+
+                <div class="header-content">
+
+                    <div class="brand-area">
+                        <img src="/images/site_logo.png" alt="TaskFlow Logo" class="taskFlow_logo">
+
+                        <div class="brand-text">
+                            <span class="eyebrow">YOUR PRODUCTIVITY SPACE</span>
+
+                            <h1>
+                                Get Things Done.
+                                <span>Stay in Flow.</span>
+                            </h1>
+
+                            <p>
+                                Organize your tasks, manage your time,
+                                and keep your day moving forward.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="header-badge">
+                        <span class="status-dot"></span>
+                        <span>Focus Mode</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ==================== ADD TASK ==================== -->
+            <section class="task-creator">
+
+                <form action="/todos" method="POST" class="task-form">
+
+                    <div class="form-group task-input">
+                        <label for="task">Task</label>
+
+                        <input type="text" id="task" name="task" placeholder="Enter task..." required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+
+                        <input type="date" id="date" name="date">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="task_time">Time</label>
+
+                        <input type="time" id="task_time" name="task_time">
+                    </div>
+
+
+                    <button type="submit" class="add-btn">
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- ==================== LIST HEADER ==================== -->
+            <section class="task-section">
+
+                <div class="task-section-header">
+
+
+
+                    <form action="/todos/search" method="GET" class="search_form">
+                        <input type="text" name="q" placeholder="Search Task...">
+
+                        <button type="submit">Search</button>
+                        <% if (typeof searchQuery !=='undefined' && searchQuery) { %>
+                            <a href="/" class="clear-search-btn">Clear</a>
+                            <% } %>
+                    </form>
+
+                    <div class="task-actions">
+
+                        <form action="/sort" method="GET">
+
+                            <select name="order" onchange="this.form.submit()">
+
+                                <option value="asc" <%=order==="asc" ? "selected" : "" %>>
+                                    Oldest First
+                                </option>
+
+                                <option value="desc" <%=order==="desc" ? "selected" : "" %>>
+                                    Newest First
+                                </option>
+
+                            </select>
+
+                        </form>
+
+
+                        <!-- Clear All -->
+                        <form action="/todos/clearAll" method="GET">
+
+                            <button type="submit" class="clear-btn">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+
+                        </form>
+                        <!-- Remove Finished  -->
+                        <form action="/todos/removeChecked" method="GET">
+
+                            <button type="submit" class="clear-btn">
+                                <span class="material-symbols-outlined">
+                                    remove_done
+                                </span>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================== TODO LIST ==================== -->
+                <div class="todo-list">
+
+                    <% if (res.length===0) { %>
+
+                        <!-- Empty State -->
+                        <div class="empty-state">
+
+                            <h3>No tasks yet</h3>
+
+                            <p>
+                                Add your first task to get started.
+                            </p>
+
+                        </div>
+
+                        <% } else { %>
+
+
+                            <% res.forEach((e)=> { %>
+
+                                <!-- ==================== TODO ITEM ==================== -->
+                                <article class="todo-item">
+
+
+
+                                    <div class="todo-check">
+
+                                        <form action="/todos/<%= e.id %>/complete" method="POST">
+
+                                            <input type="checkbox" id="task-<%= e.id %>" name="completed"
+                                                onchange="this.form.submit()" <%=e.completed ? "checked" : "" %> ">
+
+                                        </form>
+                                    </div>
+
+
+                                    <!-- Task Information -->
+                                    <div class="task-details">
+
+                                        <h3>
+                                            <%= e.task %>
+                                        </h3>
+
+                                        <div class="task-meta">
+
+                                            <span>
+                                                📅 <%= new Date(e.task_date).toLocaleDateString('en-IN', {
+                                                    day: '2-digit' , month: 'short' , year: 'numeric' }) %>
+                                            </span>
+
+                                            <span>
+                                                🕐
+
+                                                <%= new Date( '1970-01-01T' + e.task_time ).toLocaleTimeString( 'en-US'
+                                                    , { hour: 'numeric' , minute: '2-digit' , hour12: true } ) %>
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Item Actions -->
+                                    <div class="todo-actions">
+
+                                        <!-- Edit -->
+                                        <form action="/todos/edit/<%= e.id %>" method="GET">
+
+                                            <button type="submit" class="edit-btn">
+                                                Edit
+                                            </button>
+
+                                        </form>
+
+
+                                        <!-- Delete -->
+                                        <form action="/todos/<%= e.id %>?_method=DELETE" method="POST">
+
+                                            <button type="submit" class="delete-btn">
+                                                Delete
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </article>
+
+                                <% }); %>
+
+                                    <% } %>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+</body>
+
+</html>
