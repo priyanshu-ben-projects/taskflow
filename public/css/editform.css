@@ -1,538 +1,493 @@
-/* ==========================================================================
-   EDIT TASK PAGE
-   Uses the SAME dynamic theme variables as the main Todo page
-   ========================================================================== */
+ /* Theme Variables */
 
+ :root {
+     --background-color: #f8fafc;
+     --card-color: #ffffff;
 
-/* ==========================================================================
-   1. Theme Variables
-   ========================================================================== */
+     --text-color: #0f172a;
+     --text-muted: #64748b;
 
-:root {
-    --background-color: #f8fafc;
-    --card-color: #ffffff;
+     /* Dynamic theme colors */
+     --border-color: #6366f1;
+     --accent-hover: #4f46e5;
 
-    --text-color: #0f172a;
-    --text-muted: #64748b;
+     --secondary-color: #f1f5f9;
 
-    /* Dynamic theme colors */
-    --border-color: #6366f1;
-    --accent-hover: #4f46e5;
+     --danger-color: #ef4444;
+     --danger-bg: #fef2f2;
 
-    --secondary-color: #f1f5f9;
+     --badge-bg: #e0e7ff;
+     --badge-text: #3730a3;
 
-    --danger-color: #ef4444;
-    --danger-bg: #fef2f2;
+     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+     --shadow-hover: 0 8px 20px rgba(99, 102, 241, 0.12);
 
-    --badge-bg: #e0e7ff;
-    --badge-text: #3730a3;
+     --radius-lg: 20px;
+     --radius-md: 12px;
+     --radius-sm: 8px;
+ }
 
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 8px 20px rgba(99, 102, 241, 0.12);
 
-    --radius-lg: 20px;
-    --radius-md: 12px;
-    --radius-sm: 8px;
-}
+ /* reset */
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+ }
 
+ html {
+     scroll-behavior: smooth;
+ }
 
-/* ==========================================================================
-   2. Reset
-   ========================================================================== */
+ body {
+     margin: 0;
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+     font-family:
+         Inter,
+         system-ui,
+         -apple-system,
+         BlinkMacSystemFont,
+         "Segoe UI",
+         sans-serif;
 
-html {
-    scroll-behavior: smooth;
-}
+     color: var(--text-color);
+     background: var(--background-color);
+ }
 
-body {
-    margin: 0;
 
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+ .edit-page {
+     min-height: 100vh;
+     width: 100%;
 
-    color: var(--text-color);
-    background: var(--background-color);
-}
+     display: flex;
+     align-items: center;
+     justify-content: center;
 
+     padding: 30px 20px;
 
-/* ==========================================================================
-   3. Page
-   ========================================================================== */
+     background: var(--background-color);
+ }
 
-.edit-page {
-    min-height: 100vh;
-    width: 100%;
+ .edit-card {
+     width: 100%;
+     max-width: 620px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+     padding: 30px;
 
-    padding: 30px 20px;
+     background: var(--card-color);
 
-    background: var(--background-color);
-}
+     border: 1px solid var(--secondary-color);
+     border-radius: var(--radius-lg);
 
+     box-shadow: var(--shadow-md);
 
-/* ==========================================================================
-   4. Edit Card
-   ========================================================================== */
+     transition:
+         box-shadow 0.25s ease,
+         border-color 0.25s ease;
+ }
 
-.edit-card {
-    width: 100%;
-    max-width: 620px;
+ .edit-card:hover {
+     border-color: color-mix(in srgb,
+             var(--border-color) 25%,
+             var(--secondary-color));
 
-    padding: 30px;
+     box-shadow: var(--shadow-hover);
+ }
 
-    background: var(--card-color);
 
-    border: 1px solid var(--secondary-color);
-    border-radius: var(--radius-lg);
+ /* Header Part  */
 
-    box-shadow: var(--shadow-md);
+ .edit-header {
+     display: flex;
+     align-items: flex-start;
 
-    transition:
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
+     gap: 14px;
 
-.edit-card:hover {
-    border-color: color-mix(in srgb,
-            var(--border-color) 25%,
-            var(--secondary-color));
+     margin-bottom: 30px;
+ }
 
-    box-shadow: var(--shadow-hover);
-}
 
+ /* Theme Icon */
 
-/* ==========================================================================
-   5. Header
-   ========================================================================== */
+ .edit-icon {
+     width: 44px;
+     height: 44px;
 
-.edit-header {
-    display: flex;
-    align-items: flex-start;
+     display: flex;
+     align-items: center;
+     justify-content: center;
 
-    gap: 14px;
+     flex-shrink: 0;
 
-    margin-bottom: 30px;
-}
+     background: var(--badge-bg);
+     color: var(--badge-text);
 
+     border-radius: var(--radius-md);
 
-/* Theme Icon */
+     font-size: 19px;
+ }
 
-.edit-icon {
-    width: 44px;
-    height: 44px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ /* Heading */
 
-    flex-shrink: 0;
+ .edit-heading {
+     min-width: 0;
+ }
 
-    background: var(--badge-bg);
-    color: var(--badge-text);
+ .edit-label {
+     margin: 0 0 4px;
 
-    border-radius: var(--radius-md);
+     color: var(--badge-text);
 
-    font-size: 19px;
-}
+     font-size: 10px;
+     font-weight: 700;
 
+     letter-spacing: 0.08em;
+ }
 
-/* Heading */
+ .edit-heading h1 {
+     margin: 0;
 
-.edit-heading {
-    min-width: 0;
-}
+     color: var(--text-color);
 
-.edit-label {
-    margin: 0 0 4px;
+     font-size: 1.45rem;
+     font-weight: 700;
 
-    color: var(--badge-text);
+     letter-spacing: -0.02em;
+ }
 
-    font-size: 10px;
-    font-weight: 700;
+ .edit-subtitle {
+     margin: 6px 0 0;
 
-    letter-spacing: 0.08em;
-}
+     color: var(--text-muted);
 
-.edit-heading h1 {
-    margin: 0;
+     font-size: 13px;
+     line-height: 1.5;
+ }
 
-    color: var(--text-color);
 
-    font-size: 1.45rem;
-    font-weight: 700;
+ /* Task ID */
 
-    letter-spacing: -0.02em;
-}
+ .task-id {
+     margin-left: auto;
 
-.edit-subtitle {
-    margin: 6px 0 0;
+     flex-shrink: 0;
 
-    color: var(--text-muted);
+     padding: 5px 9px;
 
-    font-size: 13px;
-    line-height: 1.5;
-}
+     background: var(--badge-bg);
+     color: var(--badge-text);
 
+     border-radius: var(--radius-sm);
 
-/* Task ID */
+     font-size: 11px;
+     font-weight: 600;
+ }
 
-.task-id {
-    margin-left: auto;
 
-    flex-shrink: 0;
 
-    padding: 5px 9px;
+ .edit-task-form {
+     display: flex;
+     flex-direction: column;
 
-    background: var(--badge-bg);
-    color: var(--badge-text);
+     gap: 20px;
+ }
 
-    border-radius: var(--radius-sm);
+ .form-group {
+     display: flex;
+     flex-direction: column;
 
-    font-size: 11px;
-    font-weight: 600;
-}
+     gap: 7px;
 
+     min-width: 0;
+ }
 
-/* ==========================================================================
-   6. Form
-   ========================================================================== */
+ .form-group label {
+     color: var(--text-color);
 
-.edit-task-form {
-    display: flex;
-    flex-direction: column;
+     font-size: 12px;
+     font-weight: 600;
+ }
 
-    gap: 20px;
-}
 
-.form-group {
-    display: flex;
-    flex-direction: column;
 
-    gap: 7px;
 
-    min-width: 0;
-}
+ .form-group input {
+     width: 100%;
+     min-height: 44px;
 
-.form-group label {
-    color: var(--text-color);
+     padding: 11px 13px;
 
-    font-size: 12px;
-    font-weight: 600;
-}
+     border: 1.5px solid var(--secondary-color);
+     border-radius: var(--radius-md);
 
+     outline: none;
 
-/* ==========================================================================
-   7. Inputs
-   ========================================================================== */
+     background: var(--background-color);
+     color: var(--text-color);
 
-.form-group input {
-    width: 100%;
-    min-height: 44px;
+     font-family: inherit;
+     font-size: 14px;
 
-    padding: 11px 13px;
+     transition:
+         border-color 0.2s ease,
+         background 0.2s ease,
+         box-shadow 0.2s ease;
+ }
 
-    border: 1.5px solid var(--secondary-color);
-    border-radius: var(--radius-md);
+ .form-group input::placeholder {
+     color: var(--text-muted);
+     opacity: 0.7;
+ }
 
-    outline: none;
+ .form-group input:hover {
+     border-color: color-mix(in srgb,
+             var(--border-color) 30%,
+             var(--secondary-color));
+ }
 
-    background: var(--background-color);
-    color: var(--text-color);
+ .form-group input:focus {
+     border-color: var(--border-color);
 
-    font-family: inherit;
-    font-size: 14px;
+     background: var(--card-color);
 
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
+     box-shadow:
+         0 0 0 3px color-mix(in srgb,
+             var(--border-color) 15%,
+             transparent);
+ }
 
-.form-group input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.7;
-}
 
-.form-group input:hover {
-    border-color: color-mix(in srgb,
-            var(--border-color) 30%,
-            var(--secondary-color));
-}
 
-.form-group input:focus {
-    border-color: var(--border-color);
 
-    background: var(--card-color);
+ .form-row {
+     display: grid;
 
-    box-shadow:
-        0 0 0 3px color-mix(in srgb,
-            var(--border-color) 15%,
-            transparent);
-}
+     grid-template-columns: 1fr 1fr;
 
+     gap: 12px;
+ }
 
-/* ==========================================================================
-   8. Date / Time
-   ========================================================================== */
 
-.form-row {
-    display: grid;
+ .form-actions {
+     display: flex;
 
-    grid-template-columns: 1fr 1fr;
+     align-items: center;
+     justify-content: flex-end;
 
-    gap: 12px;
-}
+     gap: 10px;
 
+     margin-top: 8px;
+     padding-top: 20px;
 
-/* ==========================================================================
-   9. Form Actions
-   ========================================================================== */
+     border-top: 1px solid var(--secondary-color);
+ }
 
-.form-actions {
-    display: flex;
 
-    align-items: center;
-    justify-content: flex-end;
 
-    gap: 10px;
 
-    margin-top: 8px;
-    padding-top: 20px;
+ .btn-cancel {
+     display: inline-flex;
 
-    border-top: 1px solid var(--secondary-color);
-}
+     align-items: center;
+     justify-content: center;
 
+     min-height: 42px;
 
-/* ==========================================================================
-   10. Cancel
-   ========================================================================== */
+     padding: 10px 18px;
 
-.btn-cancel {
-    display: inline-flex;
+     border: 1px solid var(--secondary-color);
+     border-radius: var(--radius-md);
 
-    align-items: center;
-    justify-content: center;
+     background: var(--card-color);
+     color: var(--text-muted);
 
-    min-height: 42px;
+     text-decoration: none;
 
-    padding: 10px 18px;
+     font-family: inherit;
+     font-size: 13px;
+     font-weight: 600;
 
-    border: 1px solid var(--secondary-color);
-    border-radius: var(--radius-md);
+     cursor: pointer;
 
-    background: var(--card-color);
-    color: var(--text-muted);
+     transition:
+         background 0.2s ease,
+         border-color 0.2s ease,
+         color 0.2s ease,
+         transform 0.2s ease;
+ }
 
-    text-decoration: none;
+ .btn-cancel:hover {
+     background: var(--secondary-color);
 
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
+     color: var(--text-color);
 
-    cursor: pointer;
+     transform: translateY(-1px);
+ }
 
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
 
-.btn-cancel:hover {
-    background: var(--secondary-color);
+ .btn-save {
+     min-height: 42px;
 
-    color: var(--text-color);
+     padding: 10px 20px;
 
-    transform: translateY(-1px);
-}
+     border: none;
+     border-radius: var(--radius-md);
 
+     /* Dynamic theme */
+     background: var(--border-color);
+     color: #ffffff;
 
-/* ==========================================================================
-   11. Save Changes
-   ========================================================================== */
+     font-family: inherit;
+     font-size: 13px;
+     font-weight: 600;
 
-.btn-save {
-    min-height: 42px;
+     cursor: pointer;
 
-    padding: 10px 20px;
+     box-shadow: var(--shadow-sm);
 
-    border: none;
-    border-radius: var(--radius-md);
+     transition:
+         background 0.2s ease,
+         transform 0.2s ease,
+         box-shadow 0.2s ease;
+ }
 
-    /* Dynamic theme */
-    background: var(--border-color);
-    color: #ffffff;
+ .btn-save:hover {
+     background: var(--accent-hover);
 
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
+     transform: translateY(-1px);
 
-    cursor: pointer;
+     box-shadow: var(--shadow-md);
+ }
 
-    box-shadow: var(--shadow-sm);
+ .btn-save:active {
+     transform: translateY(0);
+ }
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
 
-.btn-save:hover {
-    background: var(--accent-hover);
+ /* Media Queries ...  */
 
-    transform: translateY(-1px);
+ @media (max-width: 600px) {
 
-    box-shadow: var(--shadow-md);
-}
+     .edit-page {
+         align-items: flex-start;
 
-.btn-save:active {
-    transform: translateY(0);
-}
+         padding: 20px 14px;
+     }
 
+     .edit-card {
+         padding: 22px 18px;
 
-/* ==========================================================================
-   12. Mobile
-   ========================================================================== */
+         border-radius: 16px;
+     }
 
-@media (max-width: 600px) {
 
-    .edit-page {
-        align-items: flex-start;
+     /* Header */
 
-        padding: 20px 14px;
-    }
+     .edit-header {
+         gap: 11px;
 
-    .edit-card {
-        padding: 22px 18px;
+         margin-bottom: 24px;
+     }
 
-        border-radius: 16px;
-    }
+     .edit-icon {
+         width: 40px;
+         height: 40px;
 
+         font-size: 17px;
+     }
 
-    /* Header */
+     .edit-heading h1 {
+         font-size: 1.25rem;
+     }
 
-    .edit-header {
-        gap: 11px;
+     .edit-subtitle {
+         font-size: 12px;
+     }
 
-        margin-bottom: 24px;
-    }
 
-    .edit-icon {
-        width: 40px;
-        height: 40px;
+     /* Date / Time */
 
-        font-size: 17px;
-    }
+     .form-row {
+         grid-template-columns: 1fr;
+     }
 
-    .edit-heading h1 {
-        font-size: 1.25rem;
-    }
 
-    .edit-subtitle {
-        font-size: 12px;
-    }
+     /* Buttons */
 
+     .form-actions {
+         flex-direction: column-reverse;
 
-    /* Date / Time */
+         align-items: stretch;
+     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-    }
+     .btn-cancel,
+     .btn-save {
+         width: 100%;
+     }
+ }
 
 
-    /* Buttons */
+ /* Small Screens  */
 
-    .form-actions {
-        flex-direction: column-reverse;
+ @media (max-width: 380px) {
 
-        align-items: stretch;
-    }
+     .edit-page {
+         padding: 10px;
+     }
 
-    .btn-cancel,
-    .btn-save {
-        width: 100%;
-    }
-}
+     .edit-card {
+         padding: 18px 14px;
 
+         border-radius: 14px;
+     }
 
-/* ==========================================================================
-   13. Small Mobile
-   ========================================================================== */
+     .edit-header {
+         gap: 9px;
+     }
 
-@media (max-width: 380px) {
+     .edit-icon {
+         width: 36px;
+         height: 36px;
 
-    .edit-page {
-        padding: 10px;
-    }
+         font-size: 15px;
+     }
 
-    .edit-card {
-        padding: 18px 14px;
+     .edit-heading h1 {
+         font-size: 1.15rem;
+     }
 
-        border-radius: 14px;
-    }
+     .edit-subtitle {
+         font-size: 11px;
+     }
 
-    .edit-header {
-        gap: 9px;
-    }
+     .task-id {
+         padding: 4px 7px;
 
-    .edit-icon {
-        width: 36px;
-        height: 36px;
+         font-size: 10px;
+     }
 
-        font-size: 15px;
-    }
+     .form-group input {
+         min-height: 42px;
 
-    .edit-heading h1 {
-        font-size: 1.15rem;
-    }
+         font-size: 13px;
+     }
+ }
 
-    .edit-subtitle {
-        font-size: 11px;
-    }
 
-    .task-id {
-        padding: 4px 7px;
 
-        font-size: 10px;
-    }
 
-    .form-group input {
-        min-height: 42px;
-
-        font-size: 13px;
-    }
-}
-
-
-/* ==========================================================================
-   14. Theme Transition
-   ========================================================================== */
-
-.edit-page,
-.edit-card,
-.edit-icon,
-.task-id,
-.form-group input,
-.btn-cancel,
-.btn-save {
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
+ .edit-page,
+ .edit-card,
+ .edit-icon,
+ .task-id,
+ .form-group input,
+ .btn-cancel,
+ .btn-save {
+     transition:
+         background-color 0.25s ease,
+         color 0.25s ease,
+         border-color 0.25s ease,
+         box-shadow 0.25s ease;
+ }

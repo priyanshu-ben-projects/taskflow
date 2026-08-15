@@ -44,9 +44,6 @@ body {
 }
 
 
-/* ==========================================================================
-   2. Main Layout
-   ========================================================================== */
 
 .wrapper {
     min-height: 100vh;
@@ -116,7 +113,6 @@ body {
 }
 
 
-/* ==================== BRAND ==================== */
 
 .brand-area {
     display: flex;
@@ -142,9 +138,6 @@ body {
 .taskFlow_logo:hover {
     transform: translateY(-2px);
 }
-
-
-/* ==================== TEXT ==================== */
 
 .brand-text {
     padding-left: 30px;
@@ -192,7 +185,6 @@ body {
 }
 
 
-/* ==================== FOCUS BADGE ==================== */
 
 .header-badge {
     display: flex;
@@ -229,7 +221,6 @@ body {
 }
 
 
-/* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 800px) {
 
@@ -264,9 +255,10 @@ body {
 }
 
 
-/* ==========================================================================
-   4. Create Task Section
-   ========================================================================== */
+
+
+
+/*  Add Task ...  */
 
 .task-creator {
     width: 100%;
@@ -381,9 +373,7 @@ body {
 }
 
 
-/* ==========================================================================
-   5. Task Section Header
-   ========================================================================== */
+/* Task Section */
 
 .task-section {
     width: 100%;
@@ -546,9 +536,7 @@ body {
     background: var(--secondary-color);
 }
 
-/* ==========================================================================
-   6. Todo List
-   ========================================================================== */
+/* Task List... */
 
 .todo-list {
     display: flex;
@@ -560,30 +548,18 @@ body {
 }
 
 
-/* ==========================================================================
-   7. Todo Item
-   ========================================================================== */
-
+/* task items  */
 .todo-item {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
     width: 100%;
-
     padding: 16px;
-
     background: var(--card-color);
-
     border: 1px solid var(--secondary-color);
     border-left: 4px solid var(--border-color);
-
     border-radius: var(--radius-md);
-
     box-shadow: var(--shadow-sm);
-
     transition:
         transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
         box-shadow 0.25s ease,
@@ -592,9 +568,7 @@ body {
 
 .todo-item:hover {
     transform: translateY(-2px);
-
     box-shadow: var(--shadow-hover);
-
     border-color: rgba(99, 102, 241, 0.3);
     border-left-color: var(--border-color);
 }
@@ -608,29 +582,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex-shrink: 0;
 }
 
 .todo-item input[type="checkbox"] {
     appearance: none;
-
     width: 22px;
     height: 22px;
-
     margin: 0;
-
     border: 2px solid #cbd5e1;
     border-radius: 6px;
-
     outline: none;
-
     background: var(--card-color);
-
     cursor: pointer;
-
     position: relative;
-
     transition:
         background 0.2s ease,
         border-color 0.2s ease,
@@ -648,47 +613,32 @@ body {
 
 .todo-item input[type="checkbox"]:checked::after {
     content: "";
-
     position: absolute;
-
     left: 6px;
     top: 2px;
-
     width: 5px;
     height: 10px;
-
     border: solid #ffffff;
     border-width: 0 2px 2px 0;
-
     transform: rotate(45deg);
 }
 
 
-/* ==========================================================================
-   9. Task Details
-   ========================================================================== */
 
 .task-details {
     display: flex;
     flex-direction: column;
-
     flex: 1;
-
     min-width: 0;
-
     gap: 5px;
 }
 
 .task-details h3 {
     margin: 0;
-
     color: var(--text-color);
-
     font-size: 15px;
     font-weight: 600;
-
     line-height: 1.4;
-
     word-break: break-word;
 }
 
@@ -697,23 +647,16 @@ body {
 
 .task-meta {
     display: flex;
-
     align-items: center;
-
     flex-wrap: wrap;
-
     gap: 10px;
-
     color: var(--text-muted);
-
     font-size: 12px;
 }
 
 .task-meta span {
     display: inline-flex;
-
     align-items: center;
-
     gap: 4px;
 }
 
@@ -722,24 +665,15 @@ body {
 
 .task-details .badge {
     display: inline-flex;
-
     align-items: center;
-
     padding: 2px 8px;
-
     background: var(--badge-bg);
     color: var(--badge-text);
-
     border-radius: var(--radius-sm);
-
     font-size: 11px;
     font-weight: 500;
 }
 
-
-/* ==========================================================================
-   10. Todo Item Actions
-   ========================================================================== */
 
 .todo-actions {
     display: flex;
@@ -793,9 +727,6 @@ body {
 }
 
 
-/* ==========================================================================
-   11. Clear All Button
-   ========================================================================== */
 
 .clear-btn {
     height: 36px;
@@ -828,9 +759,8 @@ body {
 }
 
 
-/* ==========================================================================
-   12. Empty State
-   ========================================================================== */
+
+/* Empty State */
 
 .empty-state {
     padding: 45px 20px;
@@ -860,10 +790,8 @@ body {
 }
 
 
-/* ==========================================================================
-   13. Completed Task
-   ========================================================================== */
 
+/* Task Checkbox */
 .todo-item.completed {
     background: var(--background-color);
 
@@ -884,9 +812,6 @@ body {
 }
 
 
-/* ==========================================================================
-   14. Tablet
-   ========================================================================== */
 
 @media (max-width: 760px) {
 
@@ -915,9 +840,6 @@ body {
 }
 
 
-/* ==========================================================================
-   15. Mobile
-   ========================================================================== */
 
 @media (max-width: 600px) {
 
@@ -1045,10 +967,6 @@ body {
 }
 
 
-/* ==========================================================================
-   16. Small Mobile
-   ========================================================================== */
-
 @media (max-width: 380px) {
 
     .wrapper {
@@ -1096,10 +1014,6 @@ body {
     }
 }
 
-
-/* ==========================================================================
-   17. Very Small Screens
-   ========================================================================== */
 
 @media (max-width: 320px) {
 
