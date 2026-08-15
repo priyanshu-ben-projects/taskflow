@@ -91,7 +91,8 @@ CREATE TABLE tasks (
   id INT AUTO_INCREMENT PRIMARY KEY,
   task VARCHAR(255) NOT NULL,
   task_date DATE,
-  task_time TIME
+  task_time TIME,
+  completed BOOLEAN NOT NULL DEFAULT FALSE
 );
 ```
 
