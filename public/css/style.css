@@ -477,6 +477,19 @@ body {
         box-shadow 0.2s ease;
 }
 
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding-right: 30px;
+    /* Clear button ke liye space */
+}
+
 .search_form input[type="text"]::placeholder {
     color: var(--text-muted);
 }
@@ -487,20 +500,10 @@ body {
 }
 
 .clear-search-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 36px;
-    padding: 0 12px;
-
-    border: 1px solid var(--secondary-color);
-    border-radius: var(--radius-sm);
-    background: transparent;
-    color: var(--text-muted);
-
-    font-size: 12px;
+    position: absolute;
+    right: 8px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    color: #666;
 }
 
 .clear-search-btn:hover {
