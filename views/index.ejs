@@ -96,12 +96,15 @@
 
 
                     <form action="/todos/search" method="GET" class="search_form">
-                        <input type="text" name="q" placeholder="Search Task...">
-
+                        <div class="search-input-wrapper">
+                            <input type="text" name="q"
+                                value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+                                placeholder="Search Task...">
+                            <% if (typeof searchQuery !=='undefined' && searchQuery) { %>
+                                <a href="/todos" class="clear-search-btn">✕</a>
+                                <% } %>
+                        </div>
                         <button type="submit">Search</button>
-                        <% if (typeof searchQuery !=='undefined' && searchQuery) { %>
-                            <a href="/" class="clear-search-btn">Clear</a>
-                            <% } %>
                     </form>
 
                     <div class="task-actions">
